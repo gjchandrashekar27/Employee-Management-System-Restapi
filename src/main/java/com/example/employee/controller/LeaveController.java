@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,12 @@ public class LeaveController  {
 	    public ResponseEntity<Leave> updateLeave(@PathVariable Long id, @RequestBody Leave leave) {
 	        Leave updatedLeave = leaveService.updateLeave(id, leave);
 	        return new ResponseEntity<>(updatedLeave, HttpStatus.OK);
+	    }
+	    
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<String> deleteLeave(@PathVariable Long id) {
+	        leaveService.deleteLeaveById(id);
+	        return ResponseEntity.ok("Leave with ID " + id + " has been deleted successfully.");
 	    }
 
 
