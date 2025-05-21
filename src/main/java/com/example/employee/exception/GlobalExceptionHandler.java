@@ -28,5 +28,15 @@ public class GlobalExceptionHandler {
 	    public ResponseEntity<String> handleLeaveAlreadyExistsException(LeaveAlreadyExistsException ex) {
 	        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT); // 409 Conflict fits well here
 	    }
+	  
+	  @ExceptionHandler(NoLeavesAvailableException.class)
+	  public ResponseEntity<String> handleNoLeavesAvailableException(NoLeavesAvailableException ex) {
+	      return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	  }
+	  
+	  @ExceptionHandler(LeaveNotFoundByIdException.class)
+	  public ResponseEntity<String> handleLeaveNotFoundByIdException(LeaveNotFoundByIdException ex) {
+	      return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	  }
 
 }
